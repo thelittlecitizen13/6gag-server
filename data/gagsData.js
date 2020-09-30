@@ -2,7 +2,7 @@ const fs = require('fs');
 const { request } = require('express');
 
 const filePath = __dirname + "\\gagsData.json";
-'use strict';
+
 
 const fileExist = () =>{
     try {
@@ -26,16 +26,11 @@ fileExist();
 const addGag = (gag) =>{
     let data = readGags();
     data.push(gag);
-    //let data = JSON.stringify(gag, null, 2);
-    //oldData.push(data);
     newData = JSON.stringify(data, null, 2);
     fs.writeFile(filePath, newData, (err) => {
         if (err) throw err;
         console.log('Saved!');
       });
-    //   fs.appendFile(filePath, '\n', (err) => {
-    //     if (err) throw err;
-    //   });
 };
 
 const readGag = (id) =>{
@@ -44,15 +39,10 @@ const readGag = (id) =>{
 };
 
 const readGags = () => {
-    // fs.readFile(filePath, 'utf8', (err, data) => {
-    //     if (err) throw err;
-    //     return data;
-    // }
-    // )
     let data;
     try{
-        //data = fs.readFileSync(filePath, 'utf8');
-        data = require(filePath);
+        data = fs.readFileSync(filePath, 'utf8');
+        data = JSON.parse(data);
     }
     catch (error)
     {

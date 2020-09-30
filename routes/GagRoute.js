@@ -3,20 +3,7 @@ const { required } = require('joi');
 const gagsData = require('../data/gagsData');
 const uuid = require('uuid-random');
 
-var gags = gagsData.readGags();
-
-//const gags = require('../data/data').images;
 // const Joi = require('joi');
-
-const getGag = (id) => {
-    try{
-        return gags.find(gag => parseInt(id) === parseInt(gag.id));
-    }
-    catch (error) {
-        console.log(error);
-        return null;
-    }
-};
 
 const addGag = (gag) => {
     let id = uuid();
@@ -31,14 +18,13 @@ const addGag = (gag) => {
         photo: photo
     }
     gagsData.addGag(newGag);
-    gags = gagsData.readGags();
 }
 
 
 const router = (app) => {
     
     app.get('/gags', (request, response) => {      
-        response.status(200).send(gags);
+        response.status(200).send(gagsData.readGags());
     });
     app.get('/gags/:id', (request, response) => {
         var id = request.params.id;
