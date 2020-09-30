@@ -5,9 +5,10 @@ const gags = require('../data/data').images;
 
 const getGag = (id) => {
     try{
-        return gags.find(gag => parstInt(id) === parseInt(gag.id));
+        return gags.find(gag => parseInt(id) === parseInt(gag.id));
     }
-    catch{
+    catch (error) {
+        console.log(error);
         return null;
     }
 };
