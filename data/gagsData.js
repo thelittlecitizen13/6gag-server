@@ -50,9 +50,13 @@ const readGags = () => {
         
         data = '';
     }
+    if (data === '')
+    {
+        return [];
+    }
     data = [].concat(data);
     console.log(data.length);
-    return data;
+    
 };
 
 
