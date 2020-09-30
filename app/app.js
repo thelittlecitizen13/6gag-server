@@ -1,9 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const gagRouter = require('../routes/GagRoute');
+const cors = require('cors');
+
+
 const port = 8080; // ToDo: set in configuration file
 var app = express();
 
+var coreOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(coreOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
