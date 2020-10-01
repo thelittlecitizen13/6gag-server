@@ -35,7 +35,8 @@ const addGag = (gag) =>{
 
 const readGag = (id) =>{
     let data = readGags();
-    return data.find(gag => parseInt(id) === parseInt(gag.id));
+    let gag = data.find(gag => parseInt(id) === parseInt(gag.id));
+    return gag;
 };
 
 const readGags = () => {

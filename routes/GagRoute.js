@@ -46,6 +46,8 @@ const router = (app) => {
         //let gagAsString = JSON.stringify(request.body);
         //addGag(gagAsString);
         addGag(request.body);
+        response.status(200);
+        response.end;
     });
 }
 
