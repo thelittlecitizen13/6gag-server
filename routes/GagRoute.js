@@ -6,13 +6,17 @@ const uuid = require('uuid-random');
 // const Joi = require('joi');
 
 const addGag = (gag) => {
+    console.log(Object.keys(gag));
+    
     let id = uuid();
+    let uploaderName = gag.name
     let alt = gag.alt || "no alt" ;
     let title = gag.title || "no title";
     let photo = gag.photo;
 
     let newGag = {
         id: id,
+        uploaderName: uploaderName,
         alt: alt,
         title: title,
         photo: photo

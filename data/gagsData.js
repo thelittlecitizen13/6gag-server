@@ -56,7 +56,7 @@ const readGags = () => {
     }
     data = [].concat(data);
     console.log(data.length);
-    
+    return data;
 };
 
 
