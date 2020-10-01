@@ -8,7 +8,7 @@ const port = 8080; // ToDo: set in configuration file
 var app = express();
 
 var coreOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3006','http://localhost:3000' ],
     optionsSuccessStatus: 200
 }
 
