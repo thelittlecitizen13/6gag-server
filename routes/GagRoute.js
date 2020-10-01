@@ -2,6 +2,7 @@ const { response, request } = require('express');
 const { required } = require('joi');
 const gagsData = require('../data/gagsData');
 const uuid = require('uuid-random');
+const e = require('express');
 
 // const Joi = require('joi');
 
@@ -19,6 +20,8 @@ const addGag = (gag) => {
         uploaderName: uploaderName,
         alt: alt,
         title: title,
+        liked: 0,
+        disliked: 0,
         photo: photo
     }
     gagsData.addGag(newGag);
@@ -43,11 +46,25 @@ const router = (app) => {
         }
     });
     app.post('/gags/post', (request, response) => {
-        //let gagAsString = JSON.stringify(request.body);
-        //addGag(gagAsString);
         addGag(request.body);
         response.status(200);
-        response.end;
+        response.end();
+    });
+    app.post('/gags/:id/rate', (request, response) =>{
+        var id = request.params.id;
+        console.log(id);
+        
+        let result = gagsData.rateGag(id, request.body);
+        if (result)
+        {
+            response.status(200);
+            response.end();
+        }
+        else
+        {
+            response.status(400);
+            response.end();
+        }
     });
 }
 
